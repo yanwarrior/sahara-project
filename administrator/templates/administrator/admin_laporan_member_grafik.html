@@ -1,0 +1,19 @@
+{% extends 'base_site.html' %}
+{% block title %}
+admin laporan member grafik
+{% endblock %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+    <li class="">
+        <i class="fa fa-dashboard"></i> Administrator
+    </li>
+    <li class="active">
+        <i class="fa fa-bar-chart-o"></i> Grafik Laporan Member
+    </li>
+</ol>
+{% endblock %}
+
+{% block content %}
+{{ grafik|safe }}
+{% endblock %}
