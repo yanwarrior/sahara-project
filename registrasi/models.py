@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 
 class Paket(models.Model):
     nama = models.CharField(max_length=30)
+    keterangan = models.TextField()
+    status = models.BooleanField()
     harga = models.IntegerField()
 
     def __str__(self):
@@ -23,7 +25,16 @@ class Pembayaran(models.Model):
     class Meta:
         verbose_name_plural = "Master Pembayaran"
 
-class Member(User):
+class Wilayah(models.Model):
+    nama = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.nama
+
+class Member(models.Model):
+    nama = models.CharField(max_length=100)
+    alamat = models.TextField()
+    wilayah = models.ForeignKey(Wilayah)
     paket = models.ForeignKey(Paket)
     pembayaran =  models.ForeignKey(Pembayaran)
 

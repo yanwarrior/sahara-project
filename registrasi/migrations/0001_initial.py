@@ -2,45 +2,54 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-from django.conf import settings
-import django.contrib.auth.models
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0006_require_contenttypes_0002'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='Member',
             fields=[
-                ('user_ptr', models.OneToOneField(to=settings.AUTH_USER_MODEL, auto_created=True, primary_key=True, serialize=False, parent_link=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('nama', models.CharField(max_length=100)),
+                ('alamat', models.TextField()),
             ],
             options={
-                'abstract': False,
-                'verbose_name': 'user',
-                'verbose_name_plural': 'users',
+                'verbose_name_plural': 'Data Member',
             },
-            bases=('auth.user',),
-            managers=[
-                ('objects', django.contrib.auth.models.UserManager()),
-            ],
         ),
         migrations.CreateModel(
             name='Paket',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('nama', models.CharField(max_length=30)),
+                ('keterangan', models.TextField()),
+                ('status', models.BooleanField()),
                 ('harga', models.IntegerField()),
             ],
+            options={
+                'verbose_name': 'pizza',
+                'verbose_name_plural': 'Master Paket',
+            },
         ),
         migrations.CreateModel(
             name='Pembayaran',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('jenis', models.CharField(max_length=30)),
+            ],
+            options={
+                'verbose_name_plural': 'Master Pembayaran',
+            },
+        ),
+        migrations.CreateModel(
+            name='Wilayah',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('nama', models.CharField(unique=True, max_length=100)),
             ],
         ),
         migrations.AddField(
@@ -52,5 +61,10 @@ class Migration(migrations.Migration):
             model_name='member',
             name='pembayaran',
             field=models.ForeignKey(to='registrasi.Pembayaran'),
+        ),
+        migrations.AddField(
+            model_name='member',
+            name='wilayah',
+            field=models.ForeignKey(to='registrasi.Wilayah'),
         ),
     ]

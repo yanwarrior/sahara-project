@@ -37,7 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'administrator',
+    'saharasite',
+    #'administrator',
+    'registrasi',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,7 +81,7 @@ WSGI_APPLICATION = 'sahara.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sahara_db',
+        'NAME': 'sahara_dummy',
         'USER': 'postgres',
         'PASSWORD': 'yanwar',
         'HOST': '127.0.0.1',
